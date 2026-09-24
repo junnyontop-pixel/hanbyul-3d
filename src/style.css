@@ -1,0 +1,164 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #1e2235; /* 다크 네이비 메인 배경 */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+  color: #e2e8f0;
+}
+
+/* 최상위 앱 래퍼 */
+#app {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Three.js 3D 캔버스 영역 */
+#canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* 하단 채팅 UI 컨테이너 */
+#chat-ui {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 440px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* 말풍선 + 리셋 버튼 래퍼 */
+#bubble-container {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+/* 캐릭터 답변 말풍선 */
+#bubble {
+  flex: 1;
+  background: rgba(37, 43, 67, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 16px 20px;
+  border-radius: 18px 18px 18px 4px; /* 수신 메시지 버블 디자인 */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #e6edf3;
+  max-height: 140px;
+  overflow-y: auto;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* 말풍선 내부 스크롤바 */
+#bubble::-webkit-scrollbar {
+  width: 4px;
+}
+#bubble::-webkit-scrollbar-thumb {
+  background: #3a4261;
+  border-radius: 4px;
+}
+
+/* 대화 리셋 원형 버튼 */
+#reset-btn {
+  background: #252b43;
+  border: 1px solid #373f5f;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #8b9bb4;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+#reset-btn:hover {
+  background: #313959;
+  color: #52b788;
+  border-color: #52b788;
+}
+
+/* 입력창 및 전송 폼 */
+#chat-form {
+  display: flex;
+  gap: 10px;
+  background: rgba(30, 34, 53, 0.85);
+  padding: 6px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* 입력 필드 */
+#user-input {
+  flex: 1;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  outline: none;
+  font-size: 14px;
+  background: #252b43;
+  color: #ffffff;
+  transition: border-color 0.2s ease;
+}
+
+#user-input::placeholder {
+  color: #72809d;
+}
+
+#user-input:focus {
+  border-color: #52b788; /* 에메랄드 그린 포커스 라인 */
+}
+
+/* 전송 버튼 */
+#send-btn {
+  padding: 12px 22px;
+  background: #4ea87d; /* 에메랄드 그린 시그니처 버튼 */
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+#send-btn:hover {
+  background: #5ab98b;
+}
+
+#send-btn:active {
+  transform: scale(0.98);
+}
+
+#send-btn:disabled {
+  background: #2f384f;
+  color: #63718d;
+  cursor: not-allowed;
+}
